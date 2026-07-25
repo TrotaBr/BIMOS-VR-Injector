@@ -52,6 +52,7 @@ Create `UserData/BimosVrInjector/` if it does not already exist.
 
 ### Limitations
 
+- Hand Poses currently don't work.
 - The Current state of the repository only works with BIMOS 1.0, BIMOS 2.0 support is still work in progress.
 - AssetBundles are **forward compatible only**: a bundle loads in the Unity version it was built with, or newer. Each release states the version its bundle was built with. If your game is older than that, or you want a customised rig, build your own, see [Building the rig bundle](wiki/Building-the-rig-bundle.md).
 - When no bundle is present at all, the mod spawns a placeholder primitive instead, which is enough to test the authoring loop.
