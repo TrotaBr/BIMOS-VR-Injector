@@ -6,10 +6,6 @@ A [MelonLoader](https://github.com/LavaGang/MelonLoader) mod that converts flats
 
 ## How it works
 
-```
-author in-game  ->  <scene>.json  ->  replay on every scene load
-```
-
 1. **Author mode** - browse the live scene hierarchy, disable or delete objects, place the VR rig, tag grabbables.
 2. **Config** - every action is written to `UserData/BimosVrInjector/configs/<scene>.json`.
 3. **Playback** - on each scene load the config is reapplied. Unity resets scenes on load, so nothing is assumed to persist.
