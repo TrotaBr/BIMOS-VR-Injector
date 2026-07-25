@@ -20,11 +20,6 @@ BIMOS runtime assemblies. That content is KadenZombie8's work, distributed here
 under the terms of its MIT license. The full license text must be included with
 any redistribution.
 
-> **Maintainer note:** paste the complete text of the BIMOS `LICENSE` file below
-> before publishing a release that contains the rig bundle or its assemblies. The
-> MIT license requires the copyright notice and permission notice to accompany the
-> software; a link is not sufficient.
-
 ```
 Under the MIT license, you are allowed to do whatever you want with BIMOS, even for commercial purposes. Attribution is not required, but if this project has helped you and you want to show gratitude then it would be nice to have "KadenZombie8" in the credits of your game(s)!
 ```
