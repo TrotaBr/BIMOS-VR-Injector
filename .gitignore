@@ -1,0 +1,20 @@
+# Build output
+bin/
+obj/
+build/
+*.user
+
+# The reference assemblies only YOU have (game code, MelonLoader, interop libs).
+# These are copyrighted / machine-specific — never commit them.
+# (libs/README.md is the one tracked file, documenting what goes here.)
+/libs/*
+!/libs/README.md
+
+# IDE
+.vs/
+.idea/
+*.suo
+
+# NuGet
+*.nupkg
+packages/

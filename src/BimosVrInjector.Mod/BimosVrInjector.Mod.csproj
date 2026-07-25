@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Configurations>Mono;Il2Cpp</Configurations>
+    <Configuration Condition="'$(Configuration)' == ''">Mono</Configuration>
+
+    <RootNamespace>BimosVrInjector.Mod</RootNamespace>
+    <AssemblyName>BimosVrInjector</AssemblyName>
+
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <NoWarn>$(NoWarn);CS0436;NU1701</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Mono'">
+    <TargetFramework>net45</TargetFramework>
+    <DefineConstants>$(DefineConstants);MONO</DefineConstants>
+    <MLFlavor>mono</MLFlavor>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Mono'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <PackageReference Include="UniverseLib.Mono" Version="1.5.1" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Il2Cpp'">
+    <TargetFramework>net6.0</TargetFramework>
+    <DefineConstants>$(DefineConstants);IL2CPP</DefineConstants>
+    <MLFlavor>il2cpp</MLFlavor>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Il2Cpp'">
+    <PackageReference Include="UniverseLib.IL2CPP.Interop" Version="1.5.1" />
+    <Reference Include="$(LibsDir)\il2cpp\Il2Cppmscorlib.dll" Private="false" />
+    <Reference Include="$(LibsDir)\il2cpp\Il2CppInterop.Runtime.dll" Private="false" />
+    <Reference Include="$(LibsDir)\il2cpp\Il2CppInterop.Common.dll" Private="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="$(LibsDir)\$(MLFlavor)\MelonLoader.dll" Private="false" />
+    <Reference Include="$(LibsDir)\$(MLFlavor)\0Harmony.dll" Private="false" />
+    <Reference Include="$(LibsDir)\$(MLFlavor)\UnityEngine*.dll" Private="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BimosVrInjector.Core\BimosVrInjector.Core.csproj" />
+  </ItemGroup>
+
+  <Target Name="StageMod" AfterTargets="Build">
+    <PropertyGroup>
+      <StageDir>$(RepoRoot)build\$(MLFlavor)</StageDir>
+    </PropertyGroup>
+    <ItemGroup>
+      <_UserLib Include="$(OutDir)BimosVrInjector.Core.dll" />
+      <_UserLib Include="$(OutDir)Newtonsoft.Json.dll" Condition="Exists('$(OutDir)Newtonsoft.Json.dll')" />
+      <_UserLib Include="$(OutDir)UniverseLib*.dll" />
+    </ItemGroup>
+    <MakeDir Directories="$(StageDir)\Mods;$(StageDir)\UserLibs" />
+    <Copy SourceFiles="$(OutDir)BimosVrInjector.dll" DestinationFolder="$(StageDir)\Mods" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_UserLib)" DestinationFolder="$(StageDir)\UserLibs" SkipUnchangedFiles="true" />
+    <Message Importance="high" Text="Staged $(MLFlavor) build -> $(StageDir)" />
+  </Target>
+
+</Project>
