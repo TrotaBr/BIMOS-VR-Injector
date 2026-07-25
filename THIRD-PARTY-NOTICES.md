@@ -26,7 +26,7 @@ any redistribution.
 > software; a link is not sufficient.
 
 ```
-(BIMOS LICENSE text goes here)
+Under the MIT license, you are allowed to do whatever you want with BIMOS, even for commercial purposes. Attribution is not required, but if this project has helped you and you want to show gratitude then it would be nice to have "KadenZombie8" in the credits of your game(s)!
 ```
 
 ---
